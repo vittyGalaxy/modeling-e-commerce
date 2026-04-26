@@ -1,0 +1,10 @@
+UserPhone.class
+ProductCategory.class
+User.class
+com/vittorio/ecommerce/Product.class
+Role.class
+PaymentMethod.class
+Item.class
+SalesOrderLine.class
+UserAddress.class
+SalesOrder.class

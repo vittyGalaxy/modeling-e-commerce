@@ -21,4 +21,22 @@ Le entità previste sono:
 Per ogni cliente deve essere possibile visualizzare la lista degli ordini effettuati.
 
 
-ATTENZIONE: l'esercizio deve riguardare solo la modellazione del sistema tramite la definizione e l'implementazione delle classi che rappresentano le varie entità!
+## package
+package com.vittorio.ecommerce;
+
+## MAVEN
+```
+mvn validate         # verifica che il pom.xml sia valido
+mvn compile          # compila il codice sorgente (src/main)
+mvn test-compile     # compila anche i test (src/test)
+mvn package          # compila + testa + crea il .jar in target/
+mvn install          # come package, ma installa il .jar nel repository locale (~/.m2)
+mvn clean            # cancella la cartella target/
+mvn clean package    # pulizia + build completa (il più usato)
+
+mvn test                          # esegue tutti i test
+mvn test -Dtest=ProductTest       # esegue solo una classe
+mvn test -Dtest=ProductTest#negativePrice_shouldThrowException  # solo un metodo
+mvn test -DskipTests=false        # forza l'esecuzione anche se skippati
+mvn package -DskipTests           # builda senza eseguire i test
+```
