@@ -1,3 +1,5 @@
+package com.vittorio.ecommerce;
+
 public class User {
     private String name;
     private String surname;
