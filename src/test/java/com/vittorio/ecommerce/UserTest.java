@@ -58,8 +58,8 @@ public class UserTest {
         String number1          = "1111111111";
         String number2          = "2222222222";
         String number3          = "3333333333";
-        List expectedListPhone  = new ArrayList<String>();
-        List actualListPhone    = new ArrayList<String>();
+        List<String> expectedListPhone  = new ArrayList<String>();
+        List<String> actualListPhone    = new ArrayList<String>();
 
         // only one 
         user.addPhoneNumber(number1);
@@ -84,8 +84,8 @@ public class UserTest {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date date = sdf.parse("02-02-2005");
         User user = new User("Vittorio", "Tiozzo", date, new Role(RoleType.client));
-        List expectedListPhone  = new ArrayList<String>();
-        List actualListPhone    = new ArrayList<String>();
+        List<String> expectedListPhone  = new ArrayList<String>();
+        List<String> actualListPhone    = new ArrayList<String>();
 
         String number1 = "1111111111";
         String number2 = "2222222222";
@@ -96,7 +96,7 @@ public class UserTest {
         user.addPhoneNumber(number2);
         user.addPhoneNumber(number3);
 
-        actualListPhone.add(user.getListPhone());
+        actualListPhone = user.getListPhone();
 
         expectedListPhone.add(number1);
         expectedListPhone.add(number2);
@@ -121,11 +121,29 @@ public class UserTest {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date date = sdf.parse("02-02-2005");
         User user = new User("Vittorio", "Tiozzo", date, new Role(RoleType.client));
-        List expectedListPhone  = new ArrayList<String>();
-        List actualListPhone    = new ArrayList<String>();
+        List<String> expectedListPhone  = new ArrayList<String>();
+        List<String> actualListPhone    = new ArrayList<String>();
 
         user.removePhoneNumber("9999999999999999999999999");
         actualListPhone = user.getListPhone();
         assertThat(actualListPhone).isEqualTo(expectedListPhone);
+    }
+
+    @Test
+    void getListAddressesTest() throws ParseException{
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = sdf.parse("02-02-2005");
+        User user = new User("Vittorio", "Tiozzo", date, new Role(RoleType.client));
+
+        List<Address> expectedListAddress    = new ArrayList<Address>();
+        List<Address> actualListAddress      = new ArrayList<Address>();
+
+        user.addAddress(new Address("Via Roma", 300, 12345, "Vittoria"), AddressType.shipping);
+        user.addAddress(new Address("Via Milano", 350, 12345, "Vittoria"), AddressType.billing);
+
+        actualListAddress = user.getListAddresses();
+        expectedListAddress.add(new Address("Via Roma", 300, 12345, "Vittoria"));
+        expectedListAddress.add(new Address("Via Milano", 350, 12345, "Vittoria"));
+        assertThat(actualListAddress).isEqualTo(expectedListAddress);
     }
 }

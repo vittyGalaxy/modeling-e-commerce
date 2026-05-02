@@ -10,13 +10,19 @@ public class User {
     private Date            date;
     private Role            role;
     private List<String>    listPhone;
+    private List<Address>   listSpedition;
+    private List<Address>   listBilling;
+    private List<Address>   listAddresses;
 
     public User(String name, String surname, Date date, Role role) {
         setName     (name);
         setSurname  (surname);
         setDate     (date);
         setRole     (role);
-        this.listPhone = new ArrayList<String>();
+        this.listPhone      = new ArrayList<String>();
+        this.listSpedition  = new ArrayList<Address>();
+        this.listBilling    = new ArrayList<Address>();
+        this.listAddresses  = new ArrayList<Address>();
     }
 
     // getter
@@ -39,6 +45,18 @@ public class User {
     public List<String> getListPhone() {
         return this.listPhone;
     }
+    
+    public List<Address> getListSpedition() {
+        return this.listSpedition;
+    }
+    
+    public List<Address> getListBilling() {
+        return this.listBilling;
+    }
+    
+    public List<Address> getListAddresses() {
+        return this.listAddresses;
+    }
 
     // setter
     public void setName(String name) {
@@ -57,11 +75,61 @@ public class User {
         this.role = role;
     }
 
+    // add
     public void addPhoneNumber(String number) {
         this.listPhone.add(number);
     }
 
+    public void addAddress(Address address, AddressType addressType) {
+        switch(addressType){
+            case shipping:
+                addAddressSpedition(address);
+                break;
+            case billing:
+                addAddressBilling(address);
+                break;
+            default:
+                System.out.println("address not entered correctly...");
+                break;
+        }
+    }
+    
+    protected void addAddressSpedition(Address address) {
+        this.listSpedition.add(address);
+        this.listAddresses.add(address);
+    }
+    
+    protected void addAddressBilling(Address address) {
+        this.listBilling.add(address);
+        this.listAddresses.add(address);
+    }
+
+    // remove
     public void removePhoneNumber(String number) {
         this.listPhone.remove(number);
+    }
+
+    public void removeAddress(Address address, AddressType addressType) {
+        switch(addressType) {
+            case shipping:
+                removeAddressSpedition(address);
+                break;
+            case billing:
+                removeAddressBilling(address);
+                break;
+            default:
+                System.out.println("address does not exist or address is not yours...");
+                break;
+        }
+    }
+
+    protected void removeAddressSpedition(Address address) {
+        this.listSpedition.remove(address);
+        this.listAddresses.remove(address);
+    }
+    
+    protected void removeAddressBilling(Address address) {
+        this.listBilling.remove(address);
+        this.listAddresses.remove(address);
     }
 }
