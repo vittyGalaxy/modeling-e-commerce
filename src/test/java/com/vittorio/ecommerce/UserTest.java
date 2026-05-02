@@ -24,7 +24,7 @@ public class UserTest {
         assertThat(u.getSurname()).isEqualTo("Surname");
         u.setDate("02-08-2005");
         assertThat(u.getDate()).isEqualTo("02-08-2005");
-        List<String> lp = new List<String>();
+        List<String> lp = new List<String>();   
         lp.add("3333333333");
         lp.add("2222222222");
         u.setSurname(lp);
