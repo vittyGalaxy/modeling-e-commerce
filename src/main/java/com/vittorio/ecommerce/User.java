@@ -2,6 +2,7 @@ package com.vittorio.ecommerce;
 
 import java.util.Date;
 import java.util.List;
+import java.util.ArrayList;
 
 public class User {
     private String          name;
@@ -15,6 +16,7 @@ public class User {
         setSurname  (surname);
         setDate     (date);
         setRole     (role);
+        this.listPhone = new ArrayList<String>();
     }
 
     // getter
@@ -30,8 +32,8 @@ public class User {
         return this.date;
     }
 
-    public Role getRole() {
-        return this.role;
+    public RoleType getRole() {
+        return this.role.getRoleType();
     }
 
     public List<String> getListPhone() {
@@ -55,7 +57,11 @@ public class User {
         this.role = role;
     }
 
-    public void setListPhone(List<String> listPhone) {
-        this.listPhone = listPhone;
+    public void addPhoneNumber(String number) {
+        this.listPhone.add(number);
+    }
+
+    public void removePhoneNumber(String number) {
+        this.listPhone.remove(number);
     }
 }
