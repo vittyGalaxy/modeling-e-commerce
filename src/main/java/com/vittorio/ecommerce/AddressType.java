@@ -1,6 +1,6 @@
 package com.vittorio.ecommerce;
 
 public enum AddressType {
-    spedition,
+    shipping,
     billing
 }
