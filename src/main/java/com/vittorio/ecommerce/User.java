@@ -46,7 +46,7 @@ public class User {
         return this.listPhone;
     }
     
-    public List<Address> getListSpedition() {
+    public List<Address> getListShipping() {
         return this.listSpedition;
     }
     
@@ -83,7 +83,7 @@ public class User {
     public void addAddress(Address address, AddressType addressType) {
         switch(addressType){
             case shipping:
-                addAddressSpedition(address);
+                addAddressShipping(address);
                 break;
             case billing:
                 addAddressBilling(address);
@@ -94,7 +94,7 @@ public class User {
         }
     }
     
-    protected void addAddressSpedition(Address address) {
+    protected void addAddressShipping(Address address) {
         this.listSpedition.add(address);
         this.listAddresses.add(address);
     }
@@ -112,7 +112,7 @@ public class User {
     public void removeAddress(Address address, AddressType addressType) {
         switch(addressType) {
             case shipping:
-                removeAddressSpedition(address);
+                removeAddressShipping(address);
                 break;
             case billing:
                 removeAddressBilling(address);
@@ -123,7 +123,7 @@ public class User {
         }
     }
 
-    protected void removeAddressSpedition(Address address) {
+    protected void removeAddressShipping(Address address) {
         this.listSpedition.remove(address);
         this.listAddresses.remove(address);
     }
