@@ -13,6 +13,22 @@ public class Address {
         setCity(city);
     }
 
+    // To verify equals
+    
+    @Override
+    public boolean equals(Object oReceivingAddress){
+        if (this == oReceivingAddress) return true;
+
+        Address oAddress = (Address) oReceivingAddress;
+
+        return (
+            this.via == oAddress.getVia()      && 
+            this.civic == oAddress.getCivic()  && 
+            this.city == oAddress.getCity()    &&
+            this.cap == oAddress.getCap()
+        );
+    }
+
     // getter
     public String getVia() {
         return this.via;
