@@ -146,4 +146,37 @@ public class UserTest {
         expectedListAddress.add(new Address("Via Milano", 350, 12345, "Vittoria"));
         assertThat(actualListAddress).isEqualTo(expectedListAddress);
     }
+
+    @Test
+    void getListAddressesShippingTest() throws ParseException{
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = sdf.parse("02-02-2005");
+        User user = new User("Vittorio", "Tiozzo", date, new Role(RoleType.client));
+
+        List<Address> expectedListAddress    = new ArrayList<Address>();
+        List<Address> actualListAddress      = new ArrayList<Address>();
+
+        user.addAddress(new Address("Via Roma", 300, 12345, "Vittoria"), AddressType.shipping);
+        user.addAddress(new Address("Via Milano", 350, 12345, "Vittoria"), AddressType.billing);
+
+        actualListAddress = user.getListShipping();
+        expectedListAddress.add(new Address("Via Roma", 300, 12345, "Vittoria"));
+        assertThat(actualListAddress).isEqualTo(expectedListAddress);
+    }
+
+    void getListAddressesBillingTest() throws ParseException{
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = sdf.parse("02-02-2005");
+        User user = new User("Vittorio", "Tiozzo", date, new Role(RoleType.client));
+
+        List<Address> expectedListAddress    = new ArrayList<Address>();
+        List<Address> actualListAddress      = new ArrayList<Address>();
+
+        user.addAddress(new Address("Via Roma", 300, 12345, "Vittoria"), AddressType.shipping);
+        user.addAddress(new Address("Via Milano", 350, 12345, "Vittoria"), AddressType.billing);
+
+        actualListAddress = user.getListBilling();
+        expectedListAddress.add(new Address("Via Milano", 350, 12345, "Vittoria"));
+        assertThat(actualListAddress).isEqualTo(expectedListAddress);
+    }
 }
